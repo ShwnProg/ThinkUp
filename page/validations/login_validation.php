@@ -8,13 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $db = new ThinkUpDB();
 
     //GETS THE USER INPUT
-    $username = trim($_POST['username']) ?? '';
+    $input = trim($_POST['input']) ?? '';
     $password = $_POST['password'] ?? '';
 
     $error = [];
 
-    if (empty($username))
-        $error['username'] = 'Username is required';
+    if (empty($input))
+        $error['input'] = 'Username or Email is required';
     if (empty($password))
         $error['password'] = 'Password is required';
 
@@ -27,14 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // var_dump($user);
 
 
-    if (!empty($username) && !empty($password)) {
+    if (!empty($input) && !empty($password)) {
 
-    $user = $db->AuthenticateUser($username, $password);
+    $user = $db->AuthenticateUser($input, $password);
 
     if ($user) {
         $isUser = true;
     } else {
-        $admin = $db->AuthenticateAdmin($username, $password);
+        $admin = $db->AuthenticateAdmin($input, $password);
         if ($admin) {
             $isAdmin = true;
         } else {

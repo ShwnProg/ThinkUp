@@ -26,12 +26,12 @@ class ThinkUpDB
         $this->pdo = null;
     }
 
-    public function AuthenticateUser($username, $password)
+    public function AuthenticateUser($input, $password)
     {
         try {
             // Fetch user record by username
-            $stmt = $this->pdo->prepare("SELECT * FROM users WHERE username = :username");
-            $stmt->execute(['username' => $username]);
+            $stmt = $this->pdo->prepare("SELECT * FROM users WHERE username = :input OR email = :input");
+            $stmt->execute(['input' => $input]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($user) {

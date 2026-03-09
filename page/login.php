@@ -33,11 +33,11 @@ unset($_SESSION['error'], $_SESSION['inputs']);
                     <div class="error invalid"><?= $error['invalid'] ?></div>
                 <?php endif; ?>
 
-                <input type="text" name="username" placeholder="Username"
-                    value="<?= htmlspecialchars($inputs['username']) ?? '' ?>">
+                <input type="text" name="input" placeholder="Username or Email"
+                    value="<?= htmlspecialchars($inputs['input']) ?? '' ?>">
 
-                <?php if (!empty($error['username'])): ?>
-                    <div class="error"><?= $error['username'] ?></div>
+                <?php if (!empty($error['input'])): ?>
+                    <div class="error"><?= $error['input'] ?></div>
                 <?php endif; ?>
 
                 <input type="password" name="password" id ="password" placeholder="Password"
