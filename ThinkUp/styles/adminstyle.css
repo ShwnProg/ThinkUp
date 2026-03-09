@@ -1,0 +1,317 @@
+/* ---------------- BODY ---------------- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e3eee2;
+}
+
+/* ---------------- SIDEBAR ---------------- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100%;
+    background-color: #ffffff;
+    font-size: 16px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: width 0.35s ease;
+    overflow: hidden;
+}
+
+/* ---------------- TOP SECTION ---------------- */
+.top {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+/* ---------------- LOGO ---------------- */
+.logo {
+    color: #7ed13b;
+    font-size: 20px;
+    transition: opacity 0.3s;
+}
+
+.logo span {
+    color: #1a5475;
+}
+
+/* ---------------- TOGGLE BUTTON ---------------- */
+#toggle-btn {
+    font-size: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-right: 10px;
+    color: #1a5475;
+    transition: color 0.3s;
+}
+
+#toggle-btn:hover {
+    color: #7ed13b;
+}
+
+/* ---------------- MENU BUTTON & LINKS ---------------- */
+.menu-btn,
+.sidebar a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s, color 0.3s;
+    color: #000;
+    text-decoration: none;
+    /* remove underlines */
+}
+
+/* ICON SPACING */
+.menu-btn i,
+.sidebar a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+/* HOVER EFFECT */
+.menu-btn:hover,
+.sidebar a:hover {
+    background-color: #f1f1f1;
+    color: #1a5475;
+    border-radius: 10px;
+}
+
+/* ACTIVE BUTTON EFFECT */
+.menu-btn:active {
+    background-color: #aaeec1;
+    color: #1a5475;
+    border-radius: 10px;
+}
+
+/* ---------------- COLLAPSED SIDEBAR ---------------- */
+.sidebar.hide {
+    width: 80px;
+}
+
+.sidebar.hide .logo {
+    display: none;
+}
+
+.sidebar.hide .menu-btn span,
+.sidebar.hide a span,
+.sidebar.hide .submenu-text {
+    display: none;
+}
+
+.sidebar.hide .menu-btn,
+.sidebar.hide a {
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.sidebar.hide .toggle-btn {
+    justify-content: center;
+    align-items: center;
+    margin-left: 9px;
+}
+
+.sidebar.hide .submenu a {
+    padding-left: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+/* ---------------- CONTENT ---------------- */
+.content {
+    margin-left: 220px;
+    padding: 20px;
+    transition: margin-left 0.35s ease;
+}
+
+.sidebar.hide+.content {
+    margin-left: 80px;
+}
+
+/* ---------------- SMOOTH TRANSITIONS ---------------- */
+.sidebar,
+.content,
+.menu-btn,
+.sidebar a,
+.submenu {
+    transition: all 0.3s ease;
+}
+
+/* ---------------- TOPBAR PROFILE ---------------- */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 20px;
+    background: #e3eee2;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.admin-title h2 {
+    color: #1a5475;
+    margin: 0;
+    font-size: 18px;
+}
+
+.admin-title span {
+    color: #7ed13b;
+}
+
+.profile-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+    text-align: right;
+}
+
+.profile-info .name {
+    font-weight: bold;
+    font-size: 14px;
+    color: #1a5475;
+}
+
+.profile-info .id {
+    font-size: 12px;
+    color: #555;
+}
+
+.dropdown-icon {
+    color: #1a5475;
+    transition: transform 0.3s ease;
+}
+
+/* Dropdown menu */
+.profile-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    min-width: 160px;
+    overflow: hidden;
+    z-index: 10;
+    flex-direction: column;
+}
+
+.profile-menu a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.profile-menu a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+    transition: width 0.35s ease;
+
+}
+
+.profile-menu a:hover {
+    background: #f1f1f1;
+    color: #1a5475;
+}
+
+.logout {
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Show dropdown on active */
+.profile-dropdown.active .profile-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-dropdown.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media screen and (max-width: 1024px) {
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 200px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .sidebar {
+        width: 180px;
+    }
+
+    .content {
+        margin-left: 180px;
+        padding: 10px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+
+    .sidebar {
+        width: 160px;
+    }
+
+    .content {
+        margin-left: 160px;
+        padding: 8px;
+    }
+
+}
+
+.page{
+    display:none;
+}
+
+#dashboard-page{
+    display:block;
+}
