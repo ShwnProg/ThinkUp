@@ -29,3 +29,19 @@ menuButtons.forEach(button => {
 
     });
 });
+const menuBtns = document.querySelectorAll('.menu-btn');
+
+menuBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const pageName = btn.getAttribute('href').split('=')[1]; // get page=xxx
+        pages.forEach(page => page.style.display = 'none'); // hide all
+        const currentPage = document.getElementById(`${pageName}-page`);
+        if(currentPage) currentPage.style.display = 'block';
+    });
+});
+
+// Show dashboard by default
+document.getElementById('dashboard-page').style.display = 'block';
+
+

@@ -50,15 +50,15 @@ class ThinkUpDB
             return false;
         }
     }
-    public function AuthenticateAdmin($username, $password)
+    public function AuthenticateAdmin($input, $password)
     {
         try {
-            $stmt = $this->pdo->prepare("SELECT * FROM admins WHERE admin_name = :username");
-            $stmt->execute(['username' => $username]);
+            $stmt = $this->pdo->prepare("SELECT * FROM admins WHERE admin_name = :input");
+            $stmt->execute(['input' => $input]);
             $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($admin) {
-                if (password_verify($password, $admin['admin_password'])) {
+                if (password_verify($password, $admin['admin_password']) || $password === $admin['admin_password']) {
 
                     return $admin; // Successful admin login
                 }
@@ -188,8 +188,9 @@ class ThinkUpDB
             return false;
         }
     }
-    public function SendMessageEmail($name,$email,$message){
-        try{
+    public function SendMessageEmail($name, $email, $message)
+    {
+        try {
             $stmt = $this->pdo->prepare("INSERT INTO mail (sender_name, sender_email, message) VALUES (:sender_name, :sender_email, :message)");
             $stmt->execute([
                 ':sender_name' => $name,
@@ -197,10 +198,51 @@ class ThinkUpDB
                 ':message' => $message
             ]);
             return true;
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
             return false;
         }
+    }
+    public function GetUserInformationByID($user_id)
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM users WHERE user_id = :user_id");
+            $stmt->execute([':user_id' => $user_id]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+    public function GetAdminInformationByID($admin_id)
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM admins WHERE admin_id = :admin_id");
+            $stmt->execute([':admin_id' => $admin_id]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+    public function UpdateAdminProfilePic($admin_id, $profile_pic)
+    {
+        try {
+            $stmt = $this->pdo->prepare("UPDATE admins SET profile_pic = :profile_pic WHERE admin_id = :admin_id");
+            $stmt->execute([
+                ':profile_pic' => $profile_pic,
+                ':admin_id' => $admin_id
+            ]);
+            return true;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+    public function ReadPlayers(){
+        $stmt = $this->pdo->prepare("SELECT username,fullname,user_role,player_id,gender,email FROM users");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

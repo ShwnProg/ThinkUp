@@ -58,8 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if ($isAdmin) {
-        $_SESSION['admin_id'] = $admin;
+        $_SESSION['admin_id'] = $admin['admin_id'];
         $_SESSION['success'] = true;
+        // echo $_SESSION['admin_id'];
         header("Location: /admin/dashboard.php");
         exit;
     }
