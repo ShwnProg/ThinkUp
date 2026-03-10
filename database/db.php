@@ -244,6 +244,21 @@ class ThinkUpDB
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function GetActivePlayers(){
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as active FROM users WHERE active = 1");
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function GetInactivePlayers(){
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as inactive FROM users WHERE active = 0");
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function GetTotalPlayers(){
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as total_players FROM users");
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
 }
 ?>

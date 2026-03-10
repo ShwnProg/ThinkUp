@@ -11,6 +11,10 @@ $admin_id = $_SESSION['admin_id'] ?? null;
 $db = new ThinkUpDB();
 $admin_info = $db->GetAdminInformationByID($admin_id);
 
+$active = $db->GetActivePlayers();
+$inactive = $db->GetInactivePlayers();
+$total_players = $db->GetTotalPlayers();
+
 $page = $_GET['page'] ?? 'home';
 
 $error = $_SESSION['error'] ?? [];
@@ -93,12 +97,74 @@ $success = $_SESSION['success'] ?? [];
         </div>
 
         <div id="home-page" class="page" style="display: <?= $page === 'home' ? 'block' : 'none' ?>">
-            <h1>Dashboard</h1>
-            <p>Welcome to ThinkUp Admin Panel!</p>
+            <!-- Dashboard Hero / Header with Image -->
+            <div class="dashboard-header">
+                <div class="header-top">
+                    <div class="header-text">
+                        <h1>Welcome to <span>ThinkUp</span> Admin Panel!</h1>
+                        <p>
+                            Here’s a quick summary of your players. Keep track of their activity and overall stats
+                            easily.
+                            Review active participants to see who is engaging with quizzes and challenges, monitor
+                            inactive
+                            players to follow up and encourage participation, and get a complete overview of all
+                            registered users
+                            in your system. This dashboard helps you manage your players efficiently and stay updated on
+                            system
+                            activity at a glance.
+                        </p>
+                    </div>
+                    <div class="home-image">
+                        <img src="/images/thinkUp_profile.png" alt="Dashboard Illustration">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="dashboard-cards">
+                <!-- Active Players Card -->
+                <div class="dashboard-card active-card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="card-info">
+                        <p class="card-title">Active Players</p>
+                        <p class="card-number"><?= $active['active'] ?></p>
+                        <p class="card-desc">Players who are currently active and participating in quizzes and
+                            activities.</p>
+                    </div>
+                </div>
+
+                <!-- Inactive Players Card -->
+                <div class="dashboard-card inactive-card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-times"></i>
+                    </div>
+                    <div class="card-info">
+                        <p class="card-title">Inactive Players</p>
+                        <p class="card-number"><?= $inactive['inactive'] ?></p>
+                        <p class="card-desc">Players who are currently inactive. You may want to remind or follow up
+                            with them.</p>
+                    </div>
+                </div>
+
+                <!-- Total Players Card -->
+                <div class="dashboard-card total-card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="card-info">
+                        <p class="card-title">Total Players</p>
+                        <p class="card-number"><?= $total_players['total_players'] ?></p>
+                        <p class="card-desc">Total registered players in the system, including both active and inactive
+                            users.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="players-page" class="page" style="display: <?= $page === 'players' ? 'block' : 'none' ?>">
-            <h1>List of all <span>players</span>.</h1>
+            <h1>List of all <span>players</span></h1>
 
             <div class="player-sub-container">
                 <table class='player-table'>
