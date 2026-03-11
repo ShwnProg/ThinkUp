@@ -606,7 +606,6 @@ body {
     gap:8px;
 }
 
-/* view button */
 .view-btn{
     background:#3498db;
     color:#fff;
@@ -621,7 +620,7 @@ body {
     background:#2980b9;
 }
 
-/* ban button */
+
 .ban-btn{
     background:#fa1900;
     color:#fff;
@@ -676,7 +675,7 @@ body {
 }
 
 .total-card .card-icon {
-    color: #1a5475; /* blue accent */
+    color: #1a5475; 
 }
 
 .card-info {
@@ -715,7 +714,7 @@ body {
 }
 
 .dashboard-header h1 span {
-    color: #7ed13b; /* accent color for ThinkUp */
+    color: #7ed13b; 
 }
 
 .dashboard-header p {
@@ -754,7 +753,7 @@ body {
     line-height: 1.6;
 }
 
-/* Image style similar to what you want */
+
 .home-image {
     flex: 1 1 250px;
     display: flex;
@@ -763,19 +762,19 @@ body {
 }
 
 .home-image img {
-    max-width: 350px; /* hindi sobrang laki */
+    max-width: 350px; 
     height: auto;
     animation: float 3s ease-in-out infinite;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Simple float animation */
+
 @keyframes float {
     0%, 100% {
         transform: translateY(0px);
     }
     50% {
-        transform: translateY(-10px); /* soft float, hindi sobrang taas */
+        transform: translateY(-10px); 
     }
 }

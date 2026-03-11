@@ -2,8 +2,9 @@
 include '../database/db.php';
 session_start();
 if (!isset($_SESSION['admin_id'])) {
-    $response["messages"][] = "Unauthorized.";
-    echo json_encode($response);
+    // $response["messages"][] = "Unauthorized.";
+    // echo json_encode($response);
+    header("Location: /page/login.php");
     exit;
 }
 $admin_id = $_SESSION['admin_id'] ?? null;
@@ -90,7 +91,7 @@ $success = $_SESSION['success'] ?? [];
                     <a href="dashboard.php?page=profile"><i class="fa-solid fa-key"></i> View Profile</a>
                     <a href="#"><i class="fa-solid fa-list-check"></i> Actions</a>
                     <div class="logout">
-                        <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                        <a href="/admin/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                     </div>
                 </div>
             </div>
@@ -203,8 +204,12 @@ $success = $_SESSION['success'] ?? [];
         </div>
 
         <div id="subjects-page" class="page" style="display: <?= $page === 'subjects' ? 'block' : 'none' ?>">
-            <h1>Subjects</h1>
-            <p>Manage subjects here.</p>
+            <div class="subject-header">
+
+            </div>
+            <div class="subject-table">
+
+            </div>
         </div>
 
         <div id="leaderboard-page" class="page" style="display: <?= $page === 'leaderboard' ? 'block' : 'none' ?>">
